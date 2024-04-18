@@ -13,12 +13,12 @@ int pageFaults(int pages[], int n, int capacity)
     std::unordered_map<int, int> indexes; // To store least recently used indexes of pages
 
     int page_faults = 0;  // Start from initial page 
-    for (int i = 0; i < n; i++) //loop to check 
+    for (int i = 0; i < n; i++) //loop to check each page 
     {
         // Check if the set can hold more pages 
         if (s.size() < capacity)
         {
-            // Insert it into set which indicates page fault
+            // Insert page into set if not present which indicates page fault
             if (s.find(pages[i]) == s.end())
             {
                 s.insert(pages[i]);
@@ -30,13 +30,10 @@ int pageFaults(int pages[], int n, int capacity)
             indexes[pages[i]] = i; // Store the recently used index of each page 
         }
 
-        // If the set is full then need to perform lru 
-        // i.e. remove the least recently used page 
-        // and insert the current page 
+        // If the set is full then need to perform lru i.e. remove the least recently used page and insert the current page 
         else
         {
-            // Check if current page is not already 
-            // present in the set 
+            // Check if current page is not already present in the set 
             if (s.find(pages[i]) == s.end())
             {
                 // Find the least recently used pages that is present in the set 
@@ -84,8 +81,7 @@ bool search(int key, std::vector<int>& fr)
     return false;
 }
 
-// Function to find the frame that will not be used
-// recently in future after given index in pg[0..pn-1]
+// Function to find the frame that will not be used recently in future after given index in pg[0..pn-1]
 int predict(int pg[], std::vector<int>& fr, int pn, int index)
 {
     // Store the index of pages which are going to be used recently in future
@@ -207,7 +203,7 @@ int main()
     for (int i = 0; i < 13; i++)
     {
         std::cin >> pages[i];
-        if(pages[i] < 0)
+        if(pages[i] < 0)    //ensure there is not negative number, if there is, ask user for new number
         {
             std::cerr << "Error. Enter a positive number: ";
             std::cin >> pages[i];
@@ -216,7 +212,7 @@ int main()
     int n = sizeof(pages) / sizeof(pages[0]);
     std::cout << "Enter the number of frames: ";
     std::cin >> capacity;
-    while (capacity <= 0)
+    while (capacity <= 0) 
     {
         std::cerr << "Error. Enter a positive number greater than 0: ";
         std::cin >> capacity;       //ask for capacity and ensure it is positive
