@@ -3,7 +3,7 @@
 This program is meant to find the total number of page faults from 3 different algorithms: LRU, Optimal, and FIFO. It will display each step along the way for the reference string with its page fault, if it exists, and increment the number by one.
 
 # Features
-You are able to type in your reference string (13 numbers exactly) with the number of frames you desire. It will then caluclate the amount the number of page faults through each algorithm and display the result. 
+You are able to type in your reference string (13 numbers exactly) with the number of frames you desire. It will then calculate the amount the number of page faults through each algorithm and display the result. 
 
 
 # How it works
